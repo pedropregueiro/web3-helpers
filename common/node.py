@@ -2,6 +2,7 @@ import json
 import os
 from functools import lru_cache
 
+from dotenv import load_dotenv
 from ens import ENS
 from hexbytes import HexBytes
 from web3 import Web3
@@ -11,13 +12,15 @@ from web3._utils.filters import construct_event_filter_params
 
 from .etherscan import get_contract_abi
 
+load_dotenv()
+
 CONTRACTS_STORAGE_PATH = os.path.join(os.getcwd(), "data", "contracts")
 
-MAINNET_HTTP_PROVIDER_URL = os.environ.get("MAINNET_HTTP_PROVIDER_URL")
-MAINNET_WS_PROVIDER_URL = os.environ.get("MAINNET_WS_PROVIDER_URL")
+MAINNET_HTTP_PROVIDER_URL = os.getenv("MAINNET_HTTP_PROVIDER_URL")
+MAINNET_WS_PROVIDER_URL = os.getenv("MAINNET_WS_PROVIDER_URL")
 
-POLYGON_HTTP_PROVIDER_URL = os.environ.get("POLYGON_HTTP_PROVIDER_URL")
-POLYGON_WS_PROVIDER_URL = os.environ.get("POLYGON_WS_PROVIDER_URL")
+POLYGON_HTTP_PROVIDER_URL = os.getenv("POLYGON_HTTP_PROVIDER_URL")
+POLYGON_WS_PROVIDER_URL = os.getenv("POLYGON_WS_PROVIDER_URL")
 
 CHAIN_ENDPOINTS = {
     "eth": MAINNET_HTTP_PROVIDER_URL,

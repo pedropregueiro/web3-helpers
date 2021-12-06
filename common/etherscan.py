@@ -1,9 +1,12 @@
 import os
 
 import requests
+from dotenv import load_dotenv
 
-ETHERSCAN_API_KEY = os.environ.get("ETHERSCAN_API_KEY")
-POLYGON_API_KEY = os.environ.get("POLYGON_API_KEY")
+load_dotenv()
+
+ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY")
+POLYGON_API_KEY = os.getenv("POLYGON_API_KEY")
 
 ETHERSCAN_BASE_URL = 'https://api.etherscan.io/api'
 POLYGON_BASE_URL = 'https://api.polygonscan.com/api'
