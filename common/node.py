@@ -9,7 +9,7 @@ from web3._utils.contracts import find_matching_event_abi
 from web3._utils.events import get_event_data
 from web3._utils.filters import construct_event_filter_params
 
-from etherscan import get_contract_abi
+from .etherscan import get_contract_abi
 
 CONTRACTS_STORAGE_PATH = os.path.join("data", "contracts")
 
