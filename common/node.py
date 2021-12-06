@@ -11,17 +11,17 @@ from web3._utils.filters import construct_event_filter_params
 
 from .etherscan import get_contract_abi
 
-CONTRACTS_STORAGE_PATH = os.path.join("data", "contracts")
+CONTRACTS_STORAGE_PATH = os.path.join(os.getcwd(), "data", "contracts")
 
-MAINNET_RPC_PROVIDER_URL = os.environ.get("MAINNET_RPC_PROVIDER_URL")
+MAINNET_HTTP_PROVIDER_URL = os.environ.get("MAINNET_HTTP_PROVIDER_URL")
 MAINNET_WS_PROVIDER_URL = os.environ.get("MAINNET_WS_PROVIDER_URL")
 
-POLYGON_RPC_PROVIDER_URL = os.environ.get("POLYGON_RPC_PROVIDER_URL")
+POLYGON_HTTP_PROVIDER_URL = os.environ.get("POLYGON_HTTP_PROVIDER_URL")
 POLYGON_WS_PROVIDER_URL = os.environ.get("POLYGON_WS_PROVIDER_URL")
 
 CHAIN_ENDPOINTS = {
-    "eth": MAINNET_RPC_PROVIDER_URL,
-    "polygon": POLYGON_RPC_PROVIDER_URL,
+    "eth": MAINNET_HTTP_PROVIDER_URL,
+    "polygon": POLYGON_HTTP_PROVIDER_URL,
 }
 
 CHAIN_WEBSOCKET_ENDPOINTS = {
