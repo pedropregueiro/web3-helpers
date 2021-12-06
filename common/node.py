@@ -1,6 +1,5 @@
 import json
 import os
-from functools import lru_cache
 
 from dotenv import load_dotenv
 from ens import ENS
@@ -31,13 +30,6 @@ CHAIN_WEBSOCKET_ENDPOINTS = {
     "eth": MAINNET_WS_PROVIDER_URL,
     "polygon": POLYGON_WS_PROVIDER_URL
 }
-
-
-@lru_cache
-def fetch_curated_contracts():
-    with open(os.path.join("data", "curated.json")) as f:
-        curated_contracts = json.loads(f.read())
-    return curated_contracts
 
 
 def web3_client(chain="eth", provider="http"):
@@ -192,11 +184,10 @@ def get_nft_holdings(wallet_address, contract_address, contract_metadata=None):
                                     "address": contract_address}}
 
 
-def get_curated_nfts_holdings(wallet_address, include_batch=False):
+def get_curated_nfts_holdings(wallet_address, include_batch=False, curated_contracts=None):
     wallet_address = checksum_address(wallet_address)
     holdings = []
 
-    curated_contracts = fetch_curated_contracts()
     for contract_address, contract_metadata in curated_contracts.items():
         contract_address = checksum_address(contract_address)
         contract = get_contract(contract_address)
