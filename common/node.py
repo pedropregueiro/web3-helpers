@@ -35,7 +35,7 @@ CHAIN_WEBSOCKET_ENDPOINTS = {
 
 @lru_cache
 def fetch_curated_contracts():
-    with open("curated.json") as f:
+    with open(os.path.join("data", "curated.json")) as f:
         curated_contracts = json.loads(f.read())
     return curated_contracts
 
