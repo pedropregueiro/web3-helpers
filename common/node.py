@@ -185,6 +185,9 @@ def get_nft_holdings(wallet_address, contract_address, contract_metadata=None):
 
 
 def get_curated_nfts_holdings(wallet_address, include_batch=False, curated_contracts=None):
+    if not curated_contracts:
+        raise Exception("No curated contracts to check for")
+
     wallet_address = checksum_address(wallet_address)
     holdings = []
 
