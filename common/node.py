@@ -164,6 +164,26 @@ def get_events(contract_address, event_name='Transfer', token_id=None, start_blo
     return all_events
 
 
+def get_receipt_events(transaction_receipt, contract_address, event_name='Transfer', chain="eth"):
+    codec = web3_client(chain).codec
+    contract_address = checksum_address(contract_address)
+    contract = get_contract(contract_address)
+    event_abi = find_matching_event_abi(contract.abi, event_name)
+
+    logs = transaction_receipt.logs
+
+    all_events = []
+    for log in logs:
+        try:
+            evt = get_event_data(codec, event_abi, log)
+        except Exception as e:
+            # iterate until finding the correct event
+            continue
+        all_events.append(evt)
+
+    return all_events
+
+
 def get_nft_holdings(wallet_address, contract_address, contract_metadata=None):
     wallet_address = checksum_address(wallet_address)
 
